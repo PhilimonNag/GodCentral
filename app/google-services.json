@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "347095377603",
+    "project_id": "godcentral-4fb7e",
+    "storage_bucket": "godcentral-4fb7e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:347095377603:android:4bfa0459407a8dfb69a476",
+        "android_client_info": {
+          "package_name": "com.philimonnag.godcentral"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "347095377603-agao5hhe92sar4schgcuh65v1t0u43uu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.philimonnag.godcentral",
+            "certificate_hash": "1db57c2929532d729fa8d3b10dac9ead3da5c1ce"
+          }
+        },
+        {
+          "client_id": "347095377603-ml4muv7h63l9a8bj2vjnq3knli2mormo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0f_CEzpOlLGWwoqNhgkv4LfDh7TGYg1Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "347095377603-ml4muv7h63l9a8bj2vjnq3knli2mormo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
