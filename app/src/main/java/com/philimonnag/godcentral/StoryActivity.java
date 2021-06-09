@@ -39,6 +39,8 @@ public class StoryActivity extends AppCompatActivity {
    ArrayList<UserStatus>userStatusArrayList;
    ArrayList<Status>statusArrayList;
    UserStatusAdapter userStatusAdapter;
+    Status sampleStatus;
+    ArrayList<Status> statuses;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,10 +48,12 @@ public class StoryActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         mAuth = FirebaseAuth.getInstance();
         db=FirebaseFirestore.getInstance();
-        UserStatus userStatus = new UserStatus();
+        UserStatus status = new UserStatus();
         userStatusArrayList= new ArrayList<>();
         database =FirebaseDatabase.getInstance();
+        sampleStatus = new Status();
         statusArrayList=new ArrayList<>();
+        statuses = new ArrayList<>();
         binding.story.setHasFixedSize(true);
         binding.story.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
         userStatusAdapter= new UserStatusAdapter(this,userStatusArrayList);
@@ -60,18 +64,13 @@ public class StoryActivity extends AppCompatActivity {
                 if(snapshot.exists()) {
                     userStatusArrayList.clear();
                     for(DataSnapshot storySnapshot : snapshot.getChildren()) {
-                        UserStatus status = new UserStatus();
                         status.setuName(storySnapshot.child("uName").getValue(String.class));
                         status.setUrl(storySnapshot.child("url").getValue(String.class));
                         status.setLastUpdated(storySnapshot.child("lastUpdated").getValue(Long.class));
-
-                        ArrayList<Status> statuses = new ArrayList<>();
-
                         for(DataSnapshot statusSnapshot : storySnapshot.child("statuses").getChildren()) {
-                            Status sampleStatus = statusSnapshot.getValue(Status.class);
+                            sampleStatus = statusSnapshot.getValue(Status.class);
                             statuses.add(sampleStatus);
                         }
-
                         status.setStatuses(statuses);
                         userStatusArrayList.add(status);
                     }

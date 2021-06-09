@@ -58,6 +58,8 @@ public class HomeFragment extends Fragment {
     PreachAdapter preachAdapter;
     TopStatusAdapter statusAdapter;
     ArrayList<UserStatus> userStatuses;
+    ArrayList<Status> statuses ;
+    Status sampleStatus;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -104,6 +106,7 @@ public class HomeFragment extends Fragment {
         });
 
         userStatuses = new ArrayList<>();
+        statuses = new ArrayList<>();
         binding.statusList.setHasFixedSize(true);
         binding.statusList.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
         statusAdapter = new TopStatusAdapter(getContext(), userStatuses);
@@ -116,8 +119,8 @@ public class HomeFragment extends Fragment {
         preachAdapter = new PreachAdapter(preachModelArrayList,getContext());
         binding.preaching.setAdapter(preachAdapter);
          loadPreachings();
-         //loadPrayers();
-      binding.addpreach.setOnClickListener(new View.OnClickListener() {
+         loadPrayers();
+          binding.addpreach.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View view) {
               startActivity(new Intent(getActivity(), PreachAdd.class));
@@ -168,14 +171,10 @@ public class HomeFragment extends Fragment {
                         status.setuName(storySnapshot.child("name").getValue(String.class));
                         status.setUrl(storySnapshot.child("profileImage").getValue(String.class));
                         status.setLastUpdated(storySnapshot.child("lastUpdated").getValue(Long.class));
-
-                        ArrayList<Status> statuses = new ArrayList<>();
-
                         for(DataSnapshot statusSnapshot : storySnapshot.child("statuses").getChildren()) {
-                            Status sampleStatus = statusSnapshot.getValue(Status.class);
+                            sampleStatus = statusSnapshot.getValue(Status.class);
                             statuses.add(sampleStatus);
                         }
-
                         status.setStatuses(statuses);
                         userStatuses.add(status);
                     }

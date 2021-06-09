@@ -116,7 +116,6 @@ public void statusUpload(){
                         obj.put("uName", userStatus.getuName());
                         obj.put("url", userStatus.getUrl());
                         obj.put("lastUpdated", userStatus.getLastUpdated());
-
                         String imageUrl = uri.toString();
                         Status status = new Status(imageUrl, userStatus.getLastUpdated());
 //                        documentReference = db.collection("stories").document(userId);

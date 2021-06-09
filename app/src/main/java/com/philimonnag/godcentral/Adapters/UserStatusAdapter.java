@@ -23,7 +23,6 @@ import java.util.ArrayList;
 public class UserStatusAdapter extends RecyclerView.Adapter<UserStatusAdapter.ViewHolder> {
     Context context;
     ArrayList<UserStatus>userStatusArrayList;
-    ArrayList<Status>statuses;
 
 
     public UserStatusAdapter(Context context, ArrayList<UserStatus> userStatusArrayList) {
@@ -43,7 +42,7 @@ public class UserStatusAdapter extends RecyclerView.Adapter<UserStatusAdapter.Vi
         UserStatus userStatus =userStatusArrayList.get(position);
       //  Status lastStatus = userStatus.getStatuses().get(userStatus.getStatuses().size() - 1);
         Picasso.get().load(userStatus.getUrl()).into(holder.binding.image);
-//        holder.binding.circularStatusView.setPortionsCount(userStatus.getStatuses().size());
+//       holder.binding.circularStatusView.setPortionsCount(userStatus.getStatuses().size());
 //        holder.binding.image.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {

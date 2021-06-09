@@ -4,6 +4,10 @@ public class Status {
     private String imageUrl;
     private long timeStamp;
 
+    public Status() {
+
+    }
+
     public String getImageUrl() {
         return imageUrl;
     }
