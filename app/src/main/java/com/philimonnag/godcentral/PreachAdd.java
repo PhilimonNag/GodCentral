@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.renderscript.ScriptGroup;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
@@ -21,67 +20,54 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.philimonnag.godcentral.Adapters.PreachAdapter;
-import com.philimonnag.godcentral.databinding.ActivityPrayerAddBinding;
+import com.philimonnag.godcentral.databinding.ActivityPreachAddBinding;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PrayerAdd extends AppCompatActivity {
-    private ActivityPrayerAddBinding binding;
-    FirebaseAuth mAuth;
-    DocumentReference documentReference;
-    FirebaseFirestore db;
-    String url,toall,uName;
+public class PreachAdd extends AppCompatActivity {
+  ActivityPreachAddBinding binding;
+  FirebaseAuth mAuth;
+  FirebaseFirestore db;
+  DocumentReference documentReference;
+    String url,uName,userId;
+    SimpleDateFormat time;
+    String timeStamp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding=ActivityPrayerAddBinding.inflate(getLayoutInflater());
+        binding =ActivityPreachAddBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        ActionBar actionBar= getSupportActionBar();
+        ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
+        time=new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
+        timeStamp=time.format(new Date());
         mAuth=FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
-        String userId  =  mAuth.getCurrentUser().getUid();
-        Date date= new Date();
-        String timeStamp = date.toString();
+        userId  =  mAuth.getCurrentUser().getUid();
 
         documentReference = db.collection("users").document(userId);
         documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable @org.jetbrains.annotations.Nullable DocumentSnapshot value, @Nullable @org.jetbrains.annotations.Nullable FirebaseFirestoreException error) {
-                binding.gender.setText(value.getString("gender"));
-                toall=value.getString("gender");
                 uName= value.getString("uName");
                 url=value.getString("url");
 
             }
         });
-        binding.gender.setOnClickListener(new View.OnClickListener() {
+        binding.submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                toall=toall;
-            }
-        });
-        binding.All.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                toall="all";
-            }
-        });
-        binding.submmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String prayer= binding.prayertext.getEditText().getText().toString();
-                if(TextUtils.isEmpty(prayer)){
-                    binding.prayertext.setError(" Prayer Required");
-                }else{documentReference=db.collection("prayers").document(userId).collection("prayer").document();
+                String preach = binding.preachFor.getEditText().getText().toString();
+                if(TextUtils.isEmpty(preach)){
+                    binding.preachFor.setError(" Prayer Required");
+                }else{documentReference = db.collection("Preachings").document();
                     Map<String,Object> amen= new HashMap<>();
-                    amen.put("prayer",prayer);
-                    amen.put("whom",toall);
+                    amen.put("preach",preach);
                     amen.put("uName",uName);
                     amen.put("url",url);
                     amen.put("timeStamp",timeStamp);
@@ -89,21 +75,18 @@ public class PrayerAdd extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull @NotNull Task<Void> task) {
                             if(task.isSuccessful()){
-                                Toast.makeText(PrayerAdd.this, "God bless you", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(PrayerAdd.this,MainActivity.class));
+                                Toast.makeText(PreachAdd.this, "God bless you", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(PreachAdd.this,MainActivity.class));
                             }
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull @NotNull Exception e) {
-                            Toast.makeText(PrayerAdd.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(PreachAdd.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
-
             }
         });
-
-
     }
 }

@@ -1,12 +1,12 @@
-package com.philimonnag.godcentral;
+package com.philimonnag.godcentral.model;
 
-public class user {
+public class Users {
     String uName,url,gender,email;
 
-    public user() {
+    public Users() {
     }
 
-    public user(String uName, String url, String gender, String email) {
+    public Users(String uName, String url, String gender, String email) {
         this.uName = uName;
         this.url = url;
         this.gender = gender;

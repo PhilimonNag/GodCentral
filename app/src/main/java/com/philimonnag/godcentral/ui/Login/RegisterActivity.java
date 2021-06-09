@@ -146,7 +146,7 @@ public class RegisterActivity extends AppCompatActivity {
                  if(task.isSuccessful()){
                      Uri downloadUri=task.getResult();
                      String url=downloadUri.toString();
-                     // Create a new user with a first and last name
+                     // Create a new Users with a first and last name
                      Map<String, Object> profile = new HashMap<>();
                      profile.put("uName", uName);
                      profile.put("email", email);
