@@ -11,25 +11,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GodCentral">
-        <activity android:name=".StoryActivity"></activity>
-        <activity android:name=".StatusActivity" />
-        <activity android:name=".PreachAdd" />
-        <activity android:name=".PrayerAdd" />
-        <activity android:name=".ui.Login.ForgotPasswordActivity" />
-        <activity android:name=".ui.Login.LoginActivity">
+        <activity android:name=".MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.Login.RegisterActivity" />
-        <activity android:name=".ui.onboard.OnBoardingActivity"></activity>
-        <activity android:name=".MainActivity" />
 
-        <meta-data
-            android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

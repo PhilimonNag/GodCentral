@@ -1,9 +1,15 @@
 <resources>
     <string name="app_name">God Central</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
+    <string name="chat">Chat</string>
     <string name="title_notifications">Notifications</string>
+    <string name="profile">Profile</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="preach">Preach</string>
+    <string name="email">Email</string>
+    <string name="recover">Recover</string>
+    <string name="today_s_bible_verse">Today\'s Bible Verse</string>
+    <string name="gender">gender</string>
+    <string name="everyone">everyone</string>
+    <string name="type_here">Type here...</string>
 </resources>
